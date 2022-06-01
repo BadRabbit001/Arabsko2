@@ -12,4 +12,4 @@ client.on("message", (message) => {
   //bot commands here
 });
 
-client.login("YOUR-DISCORD-TOKEN");
+client.login(os.getenv('BOT_TOKEN'))
