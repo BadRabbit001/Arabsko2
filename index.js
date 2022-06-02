@@ -1,15 +1,25 @@
-console.log("index.js has been executed");
+require('dotenv').config()
+const { Client } = require('discord.js')
+const client = new Client()
 
-const Discord = require("discord.js");
-const client = new Discord.Client();
+client.on('ready', () => {
+    console.log(`Logged in as ${client.user.tag}!`)
+})
 
-client.on("ready", () => {
-  console.log("bot has logged into the account");
-});
+client.on('message', async message => {
+    const splitMessage = message.content.split(' ')
 
-client.on("message", (message) => {
-  if (message.author.bot) return;
-  //bot commands here
-});
+    if (splitMessage[0] === 'Arab') {
+        const command = splitMessage[1]
+
+        if (!command) {
+            return
+        }
+
+        if (command.toLowerCase() === 'hello') {
+            await message.reply("Hello there!")
+        }
+    }
+})
 
 client.login(os.getenv('BOT_TOKEN'))
